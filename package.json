@@ -1,0 +1,19 @@
+{
+  "name": "visualdesignjs",
+  "version": "0.0.1-Alpha",
+  "description": "Desktop Publishing Application based on NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js",
+    "start": "./node_modules/electron/dist/Electron.app/Contents/MacOS/Electron ."
+  },
+  "author": "Patrick Günthard",
+  "license": "BSD-2-Clause",
+  "devDependencies": {
+    "electron": "^5.0.1"
+  },
+  "dependencies": {
+    "jquery": "^3.4.1",
+    "pdfjs": "^2.3.0"
+  }
+}
