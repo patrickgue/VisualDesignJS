@@ -38,12 +38,12 @@ var testDoc = {
         "paragraph" : {
             "typeface" : "Helvetica",
             "size" : 12,
-            "weight" : "400"
+            "weight" : "normal"
         },
         "heading" : {
             "typeface" : "Helvetica",
             "size" : 24,
-            "weight" : 600
+            "weight" : "bold"
         }
     },
     "pages" : [

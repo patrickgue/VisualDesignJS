@@ -33,7 +33,7 @@
 
 
 
-            <button class="btn export space"></button>
+            <button id="create-pdf" class="btn export space"></button>
             <button class="btn cog dropdown space"></button>
 
         </div>
@@ -78,6 +78,13 @@
                     <div class="item noicon autoheight">
                         <label>Text: </label> <textarea class="input sml" id="edit-text-inp"></textarea>
                     </div>
+                    <div class="item noicon">
+                        <label>Font:</label> 
+                        <select id="edit-font-inp" class="input sml">
+                            <option>paragraph</option>
+                            <option>heading</option>
+                        </select>  
+                    </div>
                 </div>
             </div>
 
@@ -112,8 +119,8 @@
 
     </div>
 
-
     <script src="app/editor/editor.js"></script>
+    <script src="app/pdfcreate/pdfcreate.js"></script>
     <script src="app/test.js"></script>
     <script src="app/app.js"></script>
 </body>

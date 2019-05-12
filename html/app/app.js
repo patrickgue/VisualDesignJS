@@ -39,7 +39,9 @@ $(function() {
         $("#edit-h-inp").val(elm.pos.height);
         if (elm.type == E.type.text) {
             $("#text-settings").show();
+            let font = docu.document.fonts[elm.font];
             $("#edit-text-inp").val(elm.text);
+            $("#edit-font-inp").val(elm.font);
         }
     });
 
@@ -57,14 +59,18 @@ $(function() {
         docu.selectElm.pos.y = parseInt($("#edit-y-inp").val());
         docu.selectElm.pos.width = parseInt($("#edit-w-inp").val());
         docu.selectElm.pos.height = parseInt($("#edit-h-inp").val());
+        
         docu.render();
     });
 
-    $("#edit-text-inp").on("change", function() {
+    $("#edit-text-inp, #edit-font-inp").on("change", function() {
         docu.selectElm.text = $("#edit-text-inp").val();
+        docu.selectElm.font = $("#edit-font-inp").val();
         docu.render();
     });
 
-
+    $("#create-pdf").click(function() {
+        C(docu.document);
+    });
 
 });
