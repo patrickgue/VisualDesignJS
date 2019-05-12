@@ -126,6 +126,7 @@ function E(elm, doc) {
             elm.pos.x = event.offsetX - 50 - (elm.pos.width / 2);
             elm.pos.y = event.offsetY - pageOffset - (elm.pos.height / 2);
             self.render();
+            self.triggerUnselectEvent();
         })
 
         selectElmRect.addEventListener("mousemove", function(event) {
@@ -156,6 +157,10 @@ function E(elm, doc) {
         self.unselectEvents.push(func);
     };
 
+    self.addPageScrollEvent = function(func) {
+        self.pageScrollEvents.push(func);
+    };
+
     self.triggerSelectionEvent = function(elm) {
         for (let func of self.selectedEvents) {
             func(elm);
@@ -168,12 +173,19 @@ function E(elm, doc) {
         }
     };
 
+    self.triggerPageScrollEvent = function(nr) {
+        for (let func of self.pageScrollEvents) {
+            func(nr, self.document.pages.length);
+        }
+    };
+
     self.zoom = 1;
     self.undoStack = [];
     self.document = doc;
     self.domelement = elm;
     self.selectedEvents = [];
     self.unselectEvents = [];
+    self.pageScrollEvents = [];
     self.render();
 
     self.domelement.addEventListener("click", function(event) {
@@ -183,9 +195,11 @@ function E(elm, doc) {
             }
             self.triggerUnselectEvent();
         }
-
     });
 
+    self.domelement.addEventListener("scroll", function(event) {
+        self.triggerPageScrollEvent(Math.floor(self.domelement.scrollTop / (self.document.pageHeight + 50)));
+    });
 }
 
 E.position = function(x, y, width, height) {
