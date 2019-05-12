@@ -43,6 +43,10 @@ $(function() {
         }
     });
 
+    docu.addPageScrollEvent(function(nr, allNr) {
+        $("#page-nr").html("Page " + (nr + 1) + " of " + allNr);
+    });
+
     docu.addUnselectEvent(function() {
         $("#text-settings").hide();
         $("#pos-settings").hide();
@@ -60,5 +64,7 @@ $(function() {
         docu.selectElm.text = $("#edit-text-inp").val();
         docu.render();
     });
+
+
 
 });
