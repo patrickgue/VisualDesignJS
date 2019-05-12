@@ -2,5 +2,10 @@
 
 * Overview
 
-WIP
+Desktop Publishing Application based on Electron and jsPDF.
+
+This software is work in progress.
+
+[[./doc/screenshot.png]]
+
 
