@@ -3,7 +3,7 @@
 
 <head>
 
-    <title>Ion</title>
+    <title>VisualDesign</title>
     <link href="css/ion.min.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
 
@@ -19,39 +19,37 @@
         </div>
 
         <div class="bar-buttons">
-            <button class="btn left-open-big"></button>
-            <button class="btn right-open-big"></button>
+            <span class="heading-title">VisualDesign</span>
+            <button id="undo-btn" class="btn back"></button>
+            <!--<button class="btn right-open-big"></button>-->
+            <button class="btn space plus dropdown"></button>
 
-            <div class="btn-group">
+            <!--<div class="btn-group">
                 <button class="btn layout"></button>
                 <button class="btn menu active"></button>
                 <button class="btn window"></button>
                 <button class="btn list"></button>
-            </div>
+            </div>-->
 
-            <button class="btn list-add space dropdown"></button>
-            <button class="btn dot-3 dropdown"></button>
-            <button class="btn cog dropdown"></button>
-            <button class="btn download space"></button>
-            <button class="btn plus"></button>
+
+
+            <button class="btn export space"></button>
+            <button class="btn cog dropdown space"></button>
+
         </div>
 
         <div class="tabs">
             <div class="tab active">
-                <span class="close"></span>
-                Documents
+                <span class="close"></span> Documents
             </div>
             <div class="tab">
-                <span class="close"></span>
-                Ion
+                <span class="close"></span> Ion
             </div>
             <div class="tab">
-                <span class="close"></span>
-                School
+                <span class="close"></span> School
             </div>
             <div class="tab">
-                <span class="close"></span>
-                Work
+                <span class="close"></span> Work
             </div>
             <div class="add">
             </div>
@@ -72,21 +70,41 @@
                 <div class="item documents active">Documents</div>
             </div>
 
-            <div class="heading">
-                Files
-            </div>
-            <div class="items">
-                <div class="item folder">
-                    Folder
+            <div id="text-settings">
+                <div class="heading">
+                    Text
                 </div>
-                <div class="item file">
-                    File
+                <div class="items autoheight">
+                    <div class="item noicon autoheight">
+                        <label>Text: </label> <textarea class="input sml" id="edit-text-inp"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div id="pos-settings">
+                <div class="heading">
+                    Position
+                </div>
+                <div class="items">
+                    <div class="item noicon">
+                        <label>X:</label> <input type="number" class="input sml" id="edit-x-inp" />
+                    </div>
+                    <div class="item noicon">
+                        <label>Y:</label> <input type="number" class="input sml" id="edit-y-inp" />
+                    </div>
+                    <div class="item noicon">
+                        <label>Width:</label> <input type="number" class="input sml" id="edit-w-inp" />
+                    </div>
+                    <div class="item noicon">
+                        <label>Height:</label> <input type="number" class="input sml" id="edit-h-inp" />
+                    </div>
                 </div>
             </div>
 
         </div>
 
-        
+        <div id="document"></div>
+
 
         <div class="path">
             <span class="item laptop">Macintosh HD</span>
@@ -97,6 +115,9 @@
 
     </div>
 
+
+    <script src="app/editor/editor.js"></script>
+    <script src="app/editor/test.js"></script>
     <script src="app/app.js"></script>
 </body>
 
