@@ -27,7 +27,7 @@ function C(baseDoc) {
                 let font = baseDoc.fonts[elm.font];
                 doc.setFont(font.typeface,font.weight)
                 doc.setFontSize(font.size * 1.3333);
-                doc.text(elm.text.replace(/#/g, parseInt(nr) + 1), elm.pos.x, elm.pos.y + (font.size * 1.333));
+                doc.text(elm.text.replace(/#/g, parseInt(nr) + 1), elm.pos.x, elm.pos.y + (font.size * 1.3333));
                 break;
             case E.type.rect:
                 let fill = baseDoc.fills[elm.fill];
