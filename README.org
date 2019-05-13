@@ -9,3 +9,13 @@ This software is work in progress.
 [[./doc/screenshot.png]]
 
 
+* Features
+
+This application consists of three elements; A SVG based editor using a JSON 
+based format, a jsPDF based exporter using the format created by the editor
+and a UI based on Electron. The first two are developed as independent 
+modules and will be published seperately at some point.
+
+* License
+
+This application is licensed under the [[./LICENSE][BSD Two-Clause Licese]].
