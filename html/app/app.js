@@ -77,7 +77,7 @@ $(function() {
     });
 
     $("#open-add-btn").click(function() {
-        $("#add-win").show();
+        $("#add-win").toggle();
     });
 
     $("#close-add-btn, #add-text-btn, #add-rect-btn").click(function() {
@@ -92,4 +92,8 @@ $(function() {
         $("#pref-win").hide();
     });
 
+    $("#add-text-btn").click(function() {
+        docu.addElement(E.type.text);
+        docu.render();
+    })
 });

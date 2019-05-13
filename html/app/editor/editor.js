@@ -72,7 +72,7 @@ function E(elm, doc) {
 
     self.createTextElement = function(pageOffset, elm, pageNr) {
         let textElm = document.createElementNS("http://www.w3.org/2000/svg", "text");
-        let font = self.document.fonts[elm.font];
+        let font = elm.font == "default" ? self.document.fonts[0] : self.document.fonts[elm.font];
         textElm.setAttribute("x", elm.pos.x + 50);
         textElm.setAttribute("y", elm.pos.y + pageOffset + (font.size * 1.333));
         textElm.setAttribute("width", elm.pos.width);
@@ -126,7 +126,7 @@ function E(elm, doc) {
             elm.pos.x = event.offsetX - 50 - (elm.pos.width / 2);
             elm.pos.y = event.offsetY - pageOffset - (elm.pos.height / 2);
             self.render();
-            self.triggerUnselectEvent();
+            self.select(elm, pageOffset);
         })
 
         selectElmRect.addEventListener("mousemove", function(event) {
@@ -167,6 +167,21 @@ function E(elm, doc) {
         }
     };
 
+    self.addElement = function(type) {
+        if(type == E.type.text) {
+            self.selectedPage.elements.push({
+                "type" : E.type.text,
+                "pos" : E.position(
+                    self.document.pageWidth / 2,
+                    self.document.pageHeight / 2,
+                    100,
+                    20),
+                "font" : "paragraph",
+                "text" : "insert text"
+            });
+        }
+    }
+
     self.triggerUnselectEvent = function() {
         for (let func of self.unselectEvents) {
             func();
@@ -177,6 +192,7 @@ function E(elm, doc) {
         for (let func of self.pageScrollEvents) {
             func(nr, self.document.pages.length);
         }
+        self.selectedPage = self.document.pages[nr];
     };
 
     self.zoom = 1;
@@ -187,6 +203,7 @@ function E(elm, doc) {
     self.unselectEvents = [];
     self.pageScrollEvents = [];
     self.render();
+    self.triggerPageScrollEvent(0);
 
     self.domelement.addEventListener("click", function(event) {
         if (event.target == self.domelement || event.target == self.svg) {
