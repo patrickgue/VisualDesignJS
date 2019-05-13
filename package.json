@@ -1,5 +1,5 @@
 {
-  "name": "visualdesignjs",
+  "name": "VisualDesign",
   "version": "0.0.1-Alpha",
   "description": "Desktop Publishing Application based on NodeJS",
   "main": "index.js",
