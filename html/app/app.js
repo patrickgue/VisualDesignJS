@@ -6,6 +6,9 @@ $(function() {
 
     $("#pos-settings").hide();
     $("#text-settings").hide();
+    $("#add-win").hide();
+    $("#pref-win").hide();
+
 
     $("#max-btn").click(function() {
         const window = remote.getCurrentWindow();
@@ -71,6 +74,22 @@ $(function() {
 
     $("#create-pdf").click(function() {
         C(docu.document);
+    });
+
+    $("#open-add-btn").click(function() {
+        $("#add-win").show();
+    });
+
+    $("#close-add-btn, #add-text-btn, #add-rect-btn").click(function() {
+        $("#add-win").hide();
+    });
+
+    $("#open-pref-btn").click(function() {
+        $("#pref-win").show();
+    });
+
+    $("#close-pref-btn").click(function() {
+        $("#pref-win").hide();
     });
 
 });

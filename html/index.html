@@ -22,20 +22,21 @@
             <span class="heading-title">VisualDesign</span>
             <button id="undo-btn" class="btn back"></button>
             <!--<button class="btn right-open-big"></button>-->
-            <button class="btn space plus dropdown"></button>
-
-            <!--<div class="btn-group">
-                <button class="btn layout"></button>
-                <button class="btn menu active"></button>
-                <button class="btn window"></button>
-                <button class="btn list"></button>
-            </div>-->
-
-
-
+            <button id="open-add-btn" class="btn space plus dropdown"></button>
+            <div class="dropdown-window" id="add-win">
+                <button class="btn lg">Text</button>
+                <button class="btn lg">Rectangle</button>
+                <button class="btn lg">Line</button>
+                <button class="btn lg">Polygon</button>
+                <button class="btn lg">Circle</button>
+                <button id="close-add-btn" class="btn win-meta">Close</button>
+            </div>
+            
             <button id="create-pdf" class="btn export space"></button>
-            <button class="btn cog dropdown space"></button>
-
+            <button id="open-pref-btn" class="btn cog dropdown space"></button>
+            <div class="dropdown-window" style="margin-left: 100px;" id="pref-win">
+                <button id="close-pref-btn" class="btn win-meta">Close</button>
+            </div>
         </div>
 
         <div class="tabs">
@@ -50,17 +51,14 @@
     </div>
     <div class="content">
         <div class="sidebar">
-            <!--<div class="heading">
+            <div class="heading">
                 Document
             </div>
             <div class="items">
-                <div class="item allmyfiles">All My Files</div>
-                <div class="item icloud">iCloud Drive</div>
-                <div class="item airdrop">AirDrop</div>
-                <div class="item applications">Applications</div>
-                <div class="item desktop">Desktop</div>
-                <div class="item documents active">Documents</div>
-            </div>-->
+                <div class="item noicon">
+                    <label>Name:</label> <input type="text" class="input sml" id="edit-document-inp" />
+                </div>
+            </div>
 
             <div id="text-settings">
                 <div class="heading">

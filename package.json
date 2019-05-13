@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "node index.js",
-    "start": "./node_modules/electron/dist/Electron.app/Contents/MacOS/Electron ."
+    "start": "./node_modules/electron/dist/Electron.app/Contents/MacOS/Electron .",
+    "package" : "electron-packager ."
   },
   "author": "Patrick Günthard",
   "license": "BSD-2-Clause",
