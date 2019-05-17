@@ -3,12 +3,9 @@ const $ = require("jquery");
 
 $(function() {
     let docu = new E(document.getElementById("document"), testDoc);
-
-    $("#pos-settings").hide();
-    $("#text-settings").hide();
-    $("#add-win").hide();
-    $("#pref-win").hide();
-
+    let selFont;
+    hideMenus();
+    loadFontList();
 
     $("#max-btn").click(function() {
         const window = remote.getCurrentWindow();
@@ -32,10 +29,10 @@ $(function() {
     $("#undo-btn").click(docu.undo);
 
     docu.addSelectionEvent(function(elm) {
-        $("#text-settings").hide();
-        $("#pos-settings").hide();
+        hideMenus();
 
         $("#pos-settings").show();
+        $("#general-settings").show();
         $("#edit-x-inp").val(elm.pos.x);
         $("#edit-y-inp").val(elm.pos.y);
         $("#edit-w-inp").val(elm.pos.width);
@@ -55,6 +52,7 @@ $(function() {
     docu.addUnselectEvent(function() {
         $("#text-settings").hide();
         $("#pos-settings").hide();
+        $("#general-settings").hide();
     });
 
     $("#edit-x-inp, #edit-y-inp, #edit-w-inp, #edit-h-inp").on("change", function() {
@@ -70,6 +68,14 @@ $(function() {
         docu.selectElm.text = $("#edit-text-inp").val();
         docu.selectElm.font = $("#edit-font-inp").val();
         docu.render();
+    });
+
+    $("#edit-up-btn").click(function() {
+        docu.selectElmMoveUp();
+    });
+
+    $("#edit-dwn-btn").click(function() {
+        docu.selectElmMoveDown();
     });
 
     $("#create-pdf").click(function() {
@@ -92,8 +98,117 @@ $(function() {
         $("#pref-win").hide();
     });
 
+    $("#open-typeface-btn").click(function() {
+        $("#typeface-sel").show();
+        $("#typeface-sel-edit").hide();
+        loadFontList();
+    });
+
+    $("#close-typeface-btn").click(function() {
+        $("#typeface-sel").hide();
+    });
+
+    $("#add-font-btn").click(function() {
+        newFont();
+        $("#typeface-sel-edit").show();
+    });
+
+    $("#save-typeface-btn").click(function() {
+        saveLoadFont();
+        loadFontList();
+        $("#typeface-sel-edit").hide();
+        docu.render();
+    });
+
     $("#add-text-btn").click(function() {
         docu.addElement(E.type.text);
         docu.render();
-    })
+    });
+
+    $("#add-rect-btn").click(function() {
+        docu.addElement(E.type.rect);
+        docu.render();
+    });
+
+    function hideMenus() {
+        $("#pos-settings").hide();
+        $("#text-settings").hide();
+        $("#add-win").hide();
+        $("#pref-win").hide();
+        $("#general-settings").hide();
+        $("#type-settings").hide();
+        $("#fill-settings").hide();
+        $("#typeface-sel").hide();
+    }
+
+    function loadFontList() {
+        $("#font-list").html("");
+        let listHTML = "";
+        let menuHTML = "";
+        for(let font in docu.document.fonts) {
+            listHTML += "<div>" + 
+            "<button class=\"delete-font btn cancel\" data-id=\""+font+"\"></button>"+
+            "<button class=\"load-font btn cog\" data-id=\""+font+"\"></button> "+font+
+            "</div>";
+            menuHTML += "<option value=\""+font+"\">"+font+"</option>";
+        }
+        $("#font-list").html(listHTML);
+        $("#edit-font-inp").html(menuHTML);
+        $(".load-font").click(function() {
+            loadFont($(this).attr("data-id"));
+            $("#typeface-sel-edit").show();
+        });
+        $(".delete-font").click(function() {
+            deleteFont($(this).attr("data-id"));
+            $("#typeface-sel-edit").hide();
+            loadFontList();
+            docu.render();
+        });
+    }
+
+    function loadFont(id) {
+        selFont = docu.document.fonts[id];
+        $("#edit-title").val(id);
+        $("#edit-typeface").val(selFont.typeface);
+        $("#edit-size").val(selFont.size);
+        $("#edit-weight").val(selFont.weight);
+        $("#edit-type").val(selFont.type);
+    }
+
+    function saveLoadFont() {
+        selFont = docu.document.fonts[$("#edit-title").val()] = {};
+        selFont.typeface = $("#edit-typeface").val();
+        selFont.size = $("#edit-size").val();
+        selFont.weight = $("#edit-weight").val();
+        selFont.type = $("#edit-type").val();
+    }
+
+    function newFont() {
+        $("#edit-title").val("untitled");
+        $("#edit-typeface").val("Helvetica");
+        $("#edit-size").val(12);
+        $("#edit-weight").val("normal");
+        $("#edit-type").val("normal");
+    }
+
+    function deleteFont(id) {
+        delete docu.document.fonts[id];
+        let newFont = Object.keys(docu.document.fonts)[0];
+
+        for(let master of docu.document.master) {
+            for(let element of master.elements) {
+                if(element.type == E.type.text && element.font == id) {
+                    element.font = newFont;
+                }
+            }
+        }
+
+        for(let page of docu.document.pages) {
+            for(let element of page.elements) {
+                if(element.type == E.type.text && element.font == id) {                
+                    element.font = newFont;
+                }
+            }
+        }
+    }
 });

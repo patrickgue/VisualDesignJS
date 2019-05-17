@@ -1,3 +1,4 @@
+
 var testDoc = {
     "title" : "Document 1",
     "pageWidth" : 595,
@@ -38,12 +39,14 @@ var testDoc = {
         "paragraph" : {
             "typeface" : "Helvetica",
             "size" : 12,
-            "weight" : "normal"
+            "weight" : "normal",
+            "type" : "normal"
         },
         "heading" : {
             "typeface" : "Helvetica",
             "size" : 24,
-            "weight" : "bold"
+            "weight" : "bold",
+            "type" : "normal"
         }
     },
     "pages" : [

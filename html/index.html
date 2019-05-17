@@ -23,20 +23,14 @@
             <button id="undo-btn" class="btn back"></button>
             <!--<button class="btn right-open-big"></button>-->
             <button id="open-add-btn" class="btn space plus dropdown"></button>
-            <div class="dropdown-window" id="add-win">
-                <button id="add-text-btn" class="btn lg">Text</button>
-                <button class="btn lg">Rectangle</button>
-                <button class="btn lg">Line</button>
-                <button class="btn lg">Polygon</button>
-                <button class="btn lg">Circle</button>
-                <button id="close-add-btn" class="btn win-meta">Close</button>
-            </div>
             
+
+            <div class="btn-group">
+                <button class="btn droplet"></button>
+                <button id="open-typeface-btn" class="btn">A</button>
+            </div>
             <button id="create-pdf" class="btn export space"></button>
             <button id="open-pref-btn" class="btn cog dropdown space"></button>
-            <div class="dropdown-window" style="margin-left: 100px;" id="pref-win">
-                <button id="close-pref-btn" class="btn win-meta">Close</button>
-            </div>
         </div>
 
         <div class="tabs">
@@ -60,6 +54,20 @@
                 </div>
             </div>
 
+            <div id="general-settings">
+                <div class="heading">
+                    General
+                </div>
+                <div class="items">
+                    <div class="item noicon">
+                        <button id="edit-up-btn" class="btn pref">Bring Forward</button>
+                    </div>
+                    <div class="item noicon">
+                        <button id="edit-dwn-btn" class="btn pref">Bring Backward</button>
+                    </div>
+                </div>
+            </div>
+
             <div id="text-settings">
                 <div class="heading">
                     Text
@@ -70,10 +78,7 @@
                     </div>
                     <div class="item noicon">
                         <label>Font:</label> 
-                        <select id="edit-font-inp" class="input sml">
-                            <option>paragraph</option>
-                            <option>heading</option>
-                        </select>  
+                        <select id="edit-font-inp" class="input sml"></select>  
                     </div>
                 </div>
             </div>
@@ -97,7 +102,22 @@
                     </div>
                 </div>
             </div>
-
+            <div id="type-settings">
+                <div class="heading">
+                    Typefaces
+                </div>
+                <div class="items">
+                    <div class="item noicon"></div>
+                </div>
+            </div>
+            <div id="fill-settings">
+                <div class="heading">
+                    Fill &amp; Line
+                </div>
+                <div class="items">
+                    <div class="item noicon"></div>
+                </div>
+            </div>
         </div>
 
         <div id="document"></div>
@@ -107,6 +127,52 @@
             <span class="item" id="page-nr"></span>
         </div>
 
+    </div>
+
+    <div class="sheet" id="typeface-sel">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; grid-gap: 10px;">
+            <div>
+                <div id="font-list"></div><br/>
+                <button id="add-font-btn" class="btn plus"></button>
+            </div>
+            <div id="typeface-sel-edit">
+                <label for="edit-title">Title: </label>
+                <input id="edit-title" type="text" />
+                <label for="edit-typeface">Typeface:</label> 
+                <select id="edit-typeface">
+                    <option>Helvetica</option>
+                    <option>Times New Roman</option>
+                    <option>Courier</option>
+                </select>
+                <label for="edit-size">Size:</label> <input id="edit-size" type="number" />
+                <label for="edit-weight">Weight:</label>
+                <select id="edit-weight">
+                    <option value="normal" default>Normal</option>
+                    <option value="bold">Bold</option>
+                </select>
+                <label for="edit-type">Type:</label> 
+                <select id="edit-type">
+                    <option value="normal">Normal</option>
+                    <option value="italic">Italic</option>
+                </select><br/>
+                <button id="save-typeface-btn" class="btn win-meta">Save</button>
+            </div>
+        </div><br/>
+        <button id="close-typeface-btn" class="btn win-meta">Close</button>
+    </div>
+
+    <div class="sheet" id="add-win">
+        <button id="add-text-btn" class="btn lg">Text</button>
+        <button id="add-rect-btn" class="btn lg">Rectangle</button>
+        <button class="btn lg">Line</button>
+        <button class="btn lg">Polygon</button>
+        <button class="btn lg">Circle</button>
+        <button id="close-add-btn" class="btn win-meta">Close</button>
+    </div>
+    
+
+    <div class="sheet" id="pref-win">
+        <button id="close-pref-btn" class="btn win-meta">Close</button>
     </div>
 
     <script src="app/editor/editor.js"></script>
