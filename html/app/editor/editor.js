@@ -35,10 +35,6 @@ function E(elm, doc) {
         self.domelement.appendChild(self.svg);
     };
 
-
-
-
-
     self.createPageSVG = function(pageOffset) {
         let pageBackground = document.createElementNS("http://www.w3.org/2000/svg", "rect");
         pageBackground.setAttribute("x", 50);
@@ -80,6 +76,7 @@ function E(elm, doc) {
         textElm.style.fontFamily = font.typeface;
         textElm.style.fontSize = font.size + "pt";
         textElm.style.fontWeight = font.weight;
+        textElm.style.fontStyle = font.type;
         textElm.innerHTML = elm.text.replace(/#/g, (pageNr + 1));
         return textElm;
     };
@@ -117,6 +114,13 @@ function E(elm, doc) {
         selectElmRect.style.fill = "rgba(127,127,255,0.5)";
         selectElmRect.style.stroke = "#88f";
         selectElmRect.style.strokeWidth = "2px";
+
+        for(let page in self.document.pages) {
+            if(self.document.pages[page].elements.indexOf(elm) != -1) {
+                self.triggerPageScrollEvent(parseInt(page));
+            }
+        }
+
         selectElmRect.addEventListener("mousedown", function(event) {
             elm.move = true;
         });
@@ -138,6 +142,26 @@ function E(elm, doc) {
         });
 
         self.svg.appendChild(selectElmRect);
+    };
+
+    self.selectElmMoveDown = function() {
+        let currentIndex = self.selectedPage.elements.indexOf(self.selectElm);
+        console.log(currentIndex, self.selectedPage.elements, self.selectElm);
+        if(currentIndex > 0) {
+            self.selectedPage.elements[currentIndex] = self.selectedPage.elements[currentIndex - 1];
+            self.selectedPage.elements[currentIndex - 1] = self.selectElm;
+        }
+        self.render();
+    };
+
+    self.selectElmMoveUp = function() {
+        let currentIndex = self.selectedPage.elements.indexOf(self.selectElm);
+        console.log(currentIndex, self.selectedPage.elements, self.selectElm);
+        if(currentIndex < self.selectedPage.elements.length -1) {
+            self.selectedPage.elements[currentIndex] = self.selectedPage.elements[currentIndex + 1];
+            self.selectedPage.elements[currentIndex + 1] = self.selectElm;
+        }
+        self.render();
     };
 
     self.undo = function() {
@@ -180,7 +204,20 @@ function E(elm, doc) {
                 "text" : "insert text"
             });
         }
-    }
+        else if(type == E.type.rect) {
+            self.selectedPage.elements.push({
+                "type" : E.type.rect,
+                "pos" : E.position(
+                    self.document.pageWidth / 2,
+                    self.document.pageHeight / 2,
+                    100,
+                    100
+                ),
+                "fill" : "default",
+                "stroke" : "default"
+            });
+        }
+    };
 
     self.triggerUnselectEvent = function() {
         for (let func of self.unselectEvents) {
