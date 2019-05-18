@@ -162,3 +162,24 @@ textarea.input.sml {
     padding: 10px;
     box-shadow: 0 15px 15px rgba(0, 0, 0, .3), inset 0 5px 10px -3px rgba(0, 0, 0, .3)
 }
+
+.bar-buttons {
+    justify-content: space-between;
+    padding-right: 10px;
+}
+
+.btn.borderless {
+    background: transparent !important;
+    min-width: 27px;
+    width: 27px;
+    border-color: transparent;
+}
+
+.btn.borderless:hover {
+    border-color: inherit;
+}
+
+.btn.red {
+    background: linear-gradient(#FD0000,#c10000)!important;
+    color: #fff;
+}

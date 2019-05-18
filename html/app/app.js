@@ -108,8 +108,12 @@ $(function() {
         loadFontList();
     });
 
-    $("#close-typeface-btn").click(function() {
-        $("#typeface-sel").hide();
+    $("#open-color-btn").click(function() {
+        $("#color-sel").show();
+    });
+
+    $(".close-sheet-btn").click(function() {
+        $(".sheet").hide();
     });
 
     $("#add-font-btn").click(function() {
@@ -134,15 +138,29 @@ $(function() {
         docu.render();
     });
 
+    $("#add-circle-btn").click(function() {
+        docu.addElement(E.type.circle);
+        docu.render();
+    });
+
+    $("#add-line-btn").click(function() {
+        docu.addElement(E.type.line);
+        docu.render();
+    });
+
+    $("#delete-btn").click(function() {
+        docu.deleteSelected();
+        docu.render();
+    });
+
     function hideMenus() {
         $("#pos-settings").hide();
         $("#text-settings").hide();
         $("#add-win").hide();
-        $("#pref-win").hide();
         $("#general-settings").hide();
         $("#type-settings").hide();
         $("#fill-settings").hide();
-        $("#typeface-sel").hide();
+        $(".sheet").hide();
     }
 
     function loadFontList() {
@@ -151,8 +169,8 @@ $(function() {
         let menuHTML = "";
         for(let font in docu.document.fonts) {
             listHTML += "<div>" + 
-            "<button class=\"delete-font btn cancel\" data-id=\""+font+"\"></button>"+
-            "<button class=\"load-font btn cog\" data-id=\""+font+"\"></button> "+font+
+            "<button class=\"delete-font borderless btn cancel\" data-id=\""+font+"\"></button>"+
+            "<button class=\"load-font borderless btn cog\" data-id=\""+font+"\"></button> "+font+
             "</div>";
             menuHTML += "<option value=\""+font+"\">"+font+"</option>";
         }

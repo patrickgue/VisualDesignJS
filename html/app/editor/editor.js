@@ -54,6 +54,12 @@ function E(elm, doc) {
             case E.type.rect:
                 elm = self.createRectElement(pageOffset, elmData);
                 break;
+            case E.type.line:
+                elm = self.createLineElement(pageOffset, elmData);
+                break;
+            case E.type.circle:
+                elm = self.createCircleElement(pageOffset, elmData);
+                break;
             default:
                 throw new Error("Not implemented");
         }
@@ -97,6 +103,40 @@ function E(elm, doc) {
         }
 
         return rectElm;
+    };
+
+    self.createLineElement = function() {
+        let lineElm = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        lineElm.setAttribute("x1", elm.pos.x + 50);
+        lineElm.setAttribute("y1", elm.pos.y + pageOffset);
+        lineElm.setAttribute("x2", elm.pos.width - elm.pos.x + 50);
+        lineElm.setAttribute("y2", elm.pos.height - elm.pos.y);
+        
+        if (elm.stroke != undefined || elm.stroke != "none") {
+            let stroke = self.document.strokes[elm.stroke];
+            lineElm.style.stroke = stroke.color;
+            lineElm.style.strokeWidth = stroke.width + "px";
+        }
+
+        return lineElm;
+    };
+
+    self.createCircleElement = function(pageOffset, elm) {
+        let circleElm = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
+        let fill = self.document.fills[elm.fill];
+        circleElm.setAttribute("cx", elm.pos.x + (elm.pos.width / 2) + 50);
+        circleElm.setAttribute("cy", elm.pos.y + (elm.pos.height / 2) + pageOffset);
+        circleElm.setAttribute("rx", elm.pos.width / 2);
+        circleElm.setAttribute("ry", elm.pos.height / 2);
+        circleElm.style.fill = fill;
+
+        if (elm.stroke != undefined || elm.stroke != "none") {
+            let stroke = self.document.strokes[elm.stroke];
+            circleElm.style.stroke = stroke.color;
+            circleElm.style.strokeWidth = stroke.width + "px";
+        }
+
+        return circleElm;
     };
 
     self.select = function(elm, pageOffset) {
@@ -217,6 +257,19 @@ function E(elm, doc) {
                 "stroke" : "default"
             });
         }
+        else if(type == E.type.circle) {
+            self.selectedPage.elements.push({
+                "type" : E.type.circle,
+                "pos" : E.position(
+                    self.document.pageWidth / 2,
+                    self.document.pageHeight / 2,
+                    100,
+                    100
+                ),
+                "fill" : "default",
+                "stroke" : "default"
+            });
+        }
     };
 
     self.triggerUnselectEvent = function() {
@@ -231,6 +284,16 @@ function E(elm, doc) {
         }
         self.selectedPage = self.document.pages[nr];
     };
+
+    self.deleteSelected = function() {
+        for(let page of self.document.pages) {
+            for(let element in page.elements) {
+                if(page.elements[element] == self.selectElm) {
+                    page.elements.splice(element,1);
+                }
+            }
+        }
+    }
 
     self.zoom = 1;
     self.undoStack = [];
