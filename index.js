@@ -6,7 +6,6 @@ let win
 let template = [
         {
             label: 'File', submenu: [
-                { role: 'quit' },
                 {
                     label: 'About This App',
                     click: () =>
@@ -21,7 +20,8 @@ let template = [
                             }
 
                         }),
-                }
+                },
+                { role: 'quit' }
             ],
         },
         {
@@ -54,6 +54,8 @@ function createWindow() {
     let windowSettings = {
         width: 960,
         height: 800,
+        minWidth: 651,
+        minHeight: 400,
         webPreferences: {
             nodeIntegration: true
         },
