@@ -51,15 +51,20 @@ let template = [
 
 
 function createWindow() {
-    win = new BrowserWindow({
+    let windowSettings = {
         width: 960,
         height: 800,
-        frame: false,
         webPreferences: {
             nodeIntegration: true
         },
         icon: join(__dirname, 'assets/icons/png/64x64.png')
-    });
+    };
+
+    if(process.platform === "darwin") {
+        windowSettings.frame =  false;
+    }
+
+    win = new BrowserWindow(windowSettings);
 
 
     const menu = Menu.buildFromTemplate(template)

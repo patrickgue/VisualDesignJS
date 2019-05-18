@@ -7,6 +7,10 @@ $(function() {
     hideMenus();
     loadFontList();
 
+    if(remote.process.platform !== "darwin") {
+        $(body).addClass("no-darwin");
+    }
+
     $("#max-btn").click(function() {
         const window = remote.getCurrentWindow();
         if (!window.isMaximized()) {
