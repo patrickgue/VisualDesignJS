@@ -6,7 +6,7 @@
   "scripts": {
     "test": "node index.js",
     "start": "./node_modules/electron/dist/Electron.app/Contents/MacOS/Electron .",
-    "package" : "electron-packager ."
+    "package": "electron-packager . --overwrite --icon assets/icons/icns/icon.icns"
   },
   "author": "Patrick Günthard",
   "license": "BSD-2-Clause",
@@ -14,6 +14,7 @@
     "electron": "^5.0.1"
   },
   "dependencies": {
+    "about-window": "^1.13.0",
     "jquery": "^3.4.1",
     "jspdf": "^1.5.3"
   }
