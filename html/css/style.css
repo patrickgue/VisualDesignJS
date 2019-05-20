@@ -18,6 +18,10 @@ button {
     float: left;
 }
 
+.blurred #traffic button {
+    background-color: #ddd;
+}
+
 .no-darwin #traffic {
     display: none;
 }
@@ -183,6 +187,10 @@ textarea.input.sml {
 
 .bar {
     background: #FDFDFD !important;
+}
+
+.blurred .bar, .blurred .bar button, .blurred .bar button::after {
+    color: #bbb !important;
 }
 
 input[type="number"] {

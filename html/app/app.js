@@ -11,6 +11,14 @@ $(function() {
         $("body").addClass("no-darwin");
     }
 
+    remote.getCurrentWindow().on("blur", function() {
+        $("body").addClass("blurred");
+    });
+
+    remote.getCurrentWindow().on("focus", function() {
+        $("body").removeClass("blurred");
+    });
+
     $("#max-btn").click(function() {
         const window = remote.getCurrentWindow();
         if (!window.isMaximized()) {
