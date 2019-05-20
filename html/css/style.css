@@ -1,3 +1,6 @@
+@import url("sheet.css");
+@import url("overlay.css");
+
 button {
     -webkit-app-region: no-drag !important;
 }
@@ -151,17 +154,7 @@ textarea.input.sml {
     float: right;
 }
 
-.sheet {
-    position: absolute;
-    width: 400px;
-    height: auto;
-    left: calc(50% - 200px);
-    top: 39px;
-    background-color: #f5f5f5;
-    border: 1px solid #bbb;
-    padding: 10px;
-    box-shadow: 0 15px 15px rgba(0, 0, 0, .3), inset 0 5px 10px -3px rgba(0, 0, 0, .3)
-}
+
 
 .bar-buttons {
     justify-content: space-between;
@@ -182,4 +175,16 @@ textarea.input.sml {
 .btn.red {
     background: linear-gradient(#FD0000,#c10000)!important;
     color: #fff;
+}
+
+.btn {
+    background: #FDFDFD !important;
+}
+
+.bar {
+    background: #FDFDFD !important;
+}
+
+input[type="number"] {
+    text-align: right;
 }

@@ -1,0 +1,39 @@
+.overlay {
+    box-sizing: border-box;
+    position: absolute;
+    top: 40px;
+    background-color: #fff;
+    width: 100vw;
+    height: calc(100vh - 40px);
+    text-align: left;
+    padding-left: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 3em;
+    text-align: left;
+}
+
+.cards-wrapper {
+    width: 100%;
+    overflow-x: scroll;
+    padding: 10px 0px;
+}
+
+.cards {
+    width: calc(230px * 5);
+}
+
+
+.card {
+    display: inline-block;
+    width: 200px;
+    height: 300px;
+    background-color: #e33;
+    margin-right: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(32,32,32,.5);
+}

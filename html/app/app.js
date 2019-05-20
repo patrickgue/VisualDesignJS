@@ -161,6 +161,7 @@ $(function() {
         $("#type-settings").hide();
         $("#fill-settings").hide();
         $(".sheet").hide();
+        $(".overlay").hide();
     }
 
     function loadFontList() {
