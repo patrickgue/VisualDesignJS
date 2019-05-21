@@ -98,7 +98,7 @@ $(function() {
         $("#add-win").toggle();
     });
 
-    $("#close-add-btn, #add-text-btn, #add-rect-btn").click(function() {
+    $("#close-add-btn, #add-text-btn, #add-rect-btn, #add-line-btn").click(function() {
         $("#add-win").hide();
     });
 

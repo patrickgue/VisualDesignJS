@@ -105,12 +105,12 @@ function E(elm, doc) {
         return rectElm;
     };
 
-    self.createLineElement = function() {
+    self.createLineElement = function(pageOffset, elm) {
         let lineElm = document.createElementNS("http://www.w3.org/2000/svg", "line");
         lineElm.setAttribute("x1", elm.pos.x + 50);
         lineElm.setAttribute("y1", elm.pos.y + pageOffset);
-        lineElm.setAttribute("x2", elm.pos.width - elm.pos.x + 50);
-        lineElm.setAttribute("y2", elm.pos.height - elm.pos.y);
+        lineElm.setAttribute("x2", elm.pos.width + elm.pos.x + 50);
+        lineElm.setAttribute("y2", elm.pos.height + elm.pos.y + pageOffset);
         
         if (elm.stroke != undefined || elm.stroke != "none") {
             let stroke = self.document.strokes[elm.stroke];
@@ -267,6 +267,18 @@ function E(elm, doc) {
                     100
                 ),
                 "fill" : "default",
+                "stroke" : "default"
+            });
+        }
+        else if(type == E.type.line) {
+            self.selectedPage.elements.push({
+                "type" : E.type.line,
+                "pos" : E.position(
+                    self.document.pageWidth / 2,
+                    self.document.pageHeight / 2,
+                    100,
+                    100
+                ),
                 "stroke" : "default"
             });
         }
