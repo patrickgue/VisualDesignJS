@@ -30,13 +30,25 @@ function C(baseDoc) {
                 doc.text(elm.text.replace(/#/g, parseInt(nr) + 1), elm.pos.x, elm.pos.y + (font.size * 1.3333));
                 break;
             case E.type.rect:
-                let fill = baseDoc.fills[elm.fill];
-                let stroke = baseDoc.strokes[elm.stroke];
+                fill = baseDoc.fills[elm.fill];
+                stroke = baseDoc.strokes[elm.stroke];
                 doc.setFillColor(fill.background);
                 doc.setDrawColor(stroke.color);
                 doc.setLineWidth(stroke.width);
                 doc.setLineCap(stroke.linecap);
                 doc.rect(elm.pos.x, elm.pos.y, elm.pos.width, elm.pos.height, "DF");
+                break;
+            case E.type.circle: 
+                fill = baseDoc.fills[elm.fill];
+                stroke = baseDoc.strokes[elm.stroke];
+                doc.setFillColor(fill.background);
+                doc.setDrawColor(stroke.color);
+                doc.setLineWidth(stroke.width);
+                doc.setLineCap(stroke.linecap);
+                doc.ellipse(
+                    elm.pos.x - (elm.pos.width / 2), elm.pos.y - (elm.pos.height / 2), 
+                    elm.pos.width / 2, elm.pos.height / 2, 
+                    "FD");
                 break;
         }
     }

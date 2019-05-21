@@ -1,0 +1,20 @@
+.sidebar {
+    width: 200px;
+}
+
+.path {
+    width: calc(100% - 201px);
+    margin-left: 201px;
+}
+
+.sidebar .item {
+    margin-bottom: 2px;
+}
+
+.sidebar .text label {
+    vertical-align: top;
+}
+
+.sidebar .item button {
+    margin-left: 60px;
+}
