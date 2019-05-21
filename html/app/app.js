@@ -161,10 +161,6 @@ $(function() {
         docu.render();
     });
 
-    $("#home-overlay-btn").click(openHomeOverlay);
-
-    $("#close-home-overlay-btn").click(closeHomeOverlay);
-
     function hideMenus() {
         $("#pos-settings").hide();
         $("#text-settings").hide();
@@ -174,16 +170,6 @@ $(function() {
         $("#fill-settings").hide();
         $(".sheet").hide();
         $(".overlay").hide();
-    }
-
-    function openHomeOverlay() {
-        $("#home-overlay").show();
-        $("#home-overlay-btn, #undo-btn, #open-add-btn, #open-color-btn, #open-typeface-btn, #create-pdf").hide();
-    }
-
-    function closeHomeOverlay() {
-        $("#home-overlay").hide();
-        $("#home-overlay-btn, #undo-btn, #open-add-btn, #open-color-btn, #open-typeface-btn, #create-pdf").show();
     }
 
     function loadFontList() {
