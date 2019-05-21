@@ -1,5 +1,6 @@
 @import url("sheet.css");
 @import url("overlay.css");
+@import url("sidebar.css");
 
 button {
     -webkit-app-region: no-drag !important;
@@ -61,7 +62,7 @@ button {
 #document {
     background-color: #666;
     float: right;
-    width: calc(100% - 141px);
+    width: calc(100% - 201px);
     height: calc(100vh - 90px);
     overflow: auto;
     margin-top: 4px;
@@ -84,15 +85,13 @@ button {
 }
 
 .input.sml {
-    width: 40px;
-    min-width: 40px;
-    height: 14px;
+    width: 102px;
+    min-width: 102px;
+    /*height: 14px;*/
 }
 
 textarea.input.sml {
-    margin-left: 20px;
-    width: 100px;
-    height: 50px;
+    height: 72px;
 }
 
 .item.noicon {

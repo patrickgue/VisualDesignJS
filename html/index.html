@@ -20,7 +20,7 @@
 
         <div class="bar-buttons">
             <span class="heading-title">VisualDesign</span>
-            <button class="btn home"></button>
+            <button id="home-overlay-btn" class="btn home"></button>
             <button id="undo-btn" class="btn back"></button>
             <button id="open-add-btn" class="btn space plus dropdown"></button>
 
@@ -75,7 +75,7 @@
                     Text
                 </div>
                 <div class="items autoheight">
-                    <div class="item noicon autoheight">
+                    <div class="item text noicon autoheight">
                         <label>Text: </label> <textarea class="input sml" id="edit-text-inp"></textarea>
                     </div>
                     <div class="item noicon">
@@ -139,21 +139,21 @@
             </div>
             <div id="typeface-sel-edit">
                 <label for="edit-title">Title: </label>
-                <input id="edit-title" type="text" />
+                <input class="input" id="edit-title" type="text" />
                 <label for="edit-typeface">Typeface:</label> 
-                <select id="edit-typeface">
+                <select class="input" id="edit-typeface">
                     <option>Helvetica</option>
                     <option>Times New Roman</option>
                     <option>Courier</option>
                 </select>
-                <label for="edit-size">Size:</label> <input id="edit-size" type="number" />
+                <label for="edit-size">Size:</label> <input class="input" id="edit-size" type="number" />
                 <label for="edit-weight">Weight:</label>
-                <select id="edit-weight">
+                <select class="input" id="edit-weight">
                     <option value="normal" default>Normal</option>
                     <option value="bold">Bold</option>
                 </select>
                 <label for="edit-type">Type:</label> 
-                <select id="edit-type">
+                <select class="input" id="edit-type">
                     <option value="normal">Normal</option>
                     <option value="italic">Italic</option>
                 </select><br/>
@@ -195,7 +195,8 @@
     </div>
 
 
-    <div class="overlay">
+    <div class="overlay" id="home-overlay">
+        <button style="float: right;" id="close-home-overlay-btn" class="btn cancel overlay-close borderless"></button>
         <h1 class="title">Home</h1>
         <h2>New</h2>
         <div class="cards-wrapper">

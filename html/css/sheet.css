@@ -8,3 +8,7 @@
     border: 1px solid #bbb;
     padding: 10px;
 }
+
+.sheet .input {
+    margin-bottom: 2px;
+}
