@@ -12,3 +12,9 @@
 .sheet .input {
     margin-bottom: 2px;
 }
+
+
+.sheet input[type="text"]::placeholder {
+    text-align: left;
+    padding: 0px;
+}

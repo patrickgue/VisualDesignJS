@@ -118,6 +118,7 @@ $(function() {
 
     $("#open-color-btn").click(function() {
         $("#color-sel").show();
+        loadFillStrokeList();
     });
 
     $(".close-sheet-btn").click(function() {
@@ -255,5 +256,22 @@ $(function() {
                 }
             }
         }
+    }
+
+    function loadFillStrokeList() {
+        let fillHTML = "";
+        for(let fillId in docu.document.fills) {
+            let fill = docu.document.fills[fillId];
+            fillHTML += "<div>" +
+                            "<input class=\"fill-item\" data-fill=\"" + fillId + "\" type=\"color\" value=\"" + fill.background + "\" /> " + fillId +
+                        "</div>";
+        }
+        $("#color-list").html(fillHTML);
+        $(".fill-item").on("change", function() {
+            let fill = docu.document.fills[$(this).attr("data-fill")];
+            fill.background = $(this).val();
+            docu.render();
+        });
+
     }
 });

@@ -348,14 +348,6 @@ E.type = {
     "oval": 4
 };
 
-/*
-TODO: remove?
-E.generateId = function() {
-    let i = Math.floor(Math.random() * 0xffffffff);
-    return ("0000000" + i.toString(16)).substr(-8);
-}*/
-
-
 // https://stackoverflow.com/questions/728360/how-do-i-correctly-clone-a-javascript-object
 function clone(obj) {
     var copy;
