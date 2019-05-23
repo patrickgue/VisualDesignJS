@@ -128,7 +128,7 @@ function E(elm, doc) {
         circleElm.setAttribute("cy", elm.pos.y + (elm.pos.height / 2) + pageOffset);
         circleElm.setAttribute("rx", elm.pos.width / 2);
         circleElm.setAttribute("ry", elm.pos.height / 2);
-        circleElm.style.fill = fill;
+        circleElm.style.fill = fill.background;
 
         if (elm.stroke != undefined || elm.stroke != "none") {
             let stroke = self.document.strokes[elm.stroke];
