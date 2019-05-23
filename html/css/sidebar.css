@@ -5,6 +5,7 @@
 .path {
     width: calc(100% - 201px);
     margin-left: 201px;
+    padding-left: 0px;
 }
 
 .sidebar .item {
