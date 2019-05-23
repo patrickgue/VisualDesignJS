@@ -9,6 +9,11 @@
     padding: 10px;
 }
 
+.sheet.wide {
+    width: 500px;
+    left: calc(50% - 250px);
+}
+
 .sheet .input {
     margin-bottom: 2px;
 }
@@ -18,3 +23,9 @@
     text-align: left;
     padding: 0px;
 }
+
+.sheet .input.short {
+    min-width: 40px;
+    width: 40px;
+}
+

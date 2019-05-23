@@ -120,6 +120,21 @@
                     <div class="item noicon"></div>
                 </div>
             </div>
+            <div id="fill-stroke-settings">
+                <div class="heading">
+                    Fill &amp; Stroke
+                </div>
+                <div class="items">
+                    <div class="item noicon">
+                        <label for="edit-fill-sel">Fill: </label>
+                        <select class="input sml" id="edit-fill-sel"></select>
+                    </div>
+                    <div class="item noicon">
+                        <label for="edit-stroke-sel">Stroke: </label>
+                        <select class="input sml" id="edit-stroke-sel"></select>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div id="document"></div>
@@ -163,17 +178,17 @@
         <button class="btn win-meta close-sheet-btn">Close</button>
     </div>
 
-    <div class="sheet" id="color-sel">
+    <div class="sheet wide" id="color-sel">
         <div style="display: grid; grid-template-columns: 1fr 1fr; grid-gap: 10px;">
             <div>
                 <b>Fill Styles</b>
                 <div id="color-list"></div><br/>
-                <input type="text" class="input" placeholder="New Fill" /><button id="add-color-style-btn" class="btn plus"></button>
+                <input id="add-color-style-label" type="text" class="input" placeholder="New Fill Label" /><button id="add-color-style-btn" class="btn plus"></button>
             </div>
             <div>
                 <b>Line Styles</b>
                 <div id="line-list"></div><br/>
-                <input type="text" class="input" placeholder="New Stroke" /> <button id="add-line-style-btn" class="btn plus"></button>
+                <input id="add-line-style-label" type="text" class="input" placeholder="New Stroke Label" /><button id="add-line-style-btn" class="btn plus"></button>
             </div>
         </div>
         <button class="btn win-meta close-sheet-btn">Close</button>

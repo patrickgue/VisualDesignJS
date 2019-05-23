@@ -55,6 +55,11 @@ $(function() {
             $("#edit-text-inp").val(elm.text);
             $("#edit-font-inp").val(elm.font);
         }
+        else {
+            $("#fill-stroke-settings").show();
+            loadFillStrokeList();
+            $("#edit-fill-sel").val(elm.fill);
+        }
     });
 
     docu.addPageScrollEvent(function(nr, allNr) {
@@ -79,6 +84,16 @@ $(function() {
     $("#edit-text-inp, #edit-font-inp").on("change", function() {
         docu.selectElm.text = $("#edit-text-inp").val();
         docu.selectElm.font = $("#edit-font-inp").val();
+        docu.render();
+    });
+
+    $("#edit-fill-sel").on("change", function() {
+        docu.selectElm.fill = $(this).val();
+        docu.render();
+    });
+
+    $("#edit-stroke-sel").on("change", function() {
+        docu.selectElm.stroke = $(this).val();
         docu.render();
     });
 
@@ -166,9 +181,39 @@ $(function() {
 
     $("#close-home-overlay-btn").click(closeHomeOverlay);
 
+    $("#add-color-style-btn").click(function() {
+        let label = $("#add-color-style-label").val();
+        if(label != "") {
+            docu.document.fills[label] = {
+                "background" : "#000000"
+            };
+            loadFillStrokeList();
+        }
+        else {
+            //TODO: implement error
+        }
+    });
+
+    $("#add-line-style-btn").click(function() {
+        let label = $("#add-line-style-label").val();
+        if(label != "") {
+            docu.document.strokes[label] = {
+                "width" : 1,
+                "linecap" : "butt",
+                "style" : "solid",
+                "color" : "#000000"
+            };
+            loadFillStrokeList();
+        }
+        else {
+            //TODO: implement error
+        }
+    });
+
     function hideMenus() {
         $("#pos-settings").hide();
         $("#text-settings").hide();
+        $("#fill-stroke-settings").hide();
         $("#add-win").hide();
         $("#general-settings").hide();
         $("#type-settings").hide();
@@ -251,25 +296,118 @@ $(function() {
 
         for(let page of docu.document.pages) {
             for(let element of page.elements) {
-                if(element.type == E.type.text && element.font == id) {                
+                if(element.type == E.type.text && element.font == id) {
                     element.font = newFont;
                 }
             }
         }
     }
 
+    function deleteFill(id) {
+        delete docu.document.fills[id];
+        let newFill = Object.keys(docu.document.fills)[0];
+
+        for(let master of docu.document.master) {
+            for(let element of master.elements) {
+                if(element.type != E.type.text && element.fill == id) {
+                    element.fill = newFill;
+                }
+            }
+        }
+
+        for(let page of docu.document.pages) {
+            for(let element of page.elements) {
+                if(element.type != E.type.text && element.fill == id) {
+                    element.fill = newFill;
+                }
+            }
+        }
+    }
+
+    function deleteStroke(id) {
+        delete docu.document.strokes[id];
+        let newStroke = Object.keys(docu.document.strokes)[0];
+
+        for(let master of docu.document.master) {
+            for(let element of master.elements) {
+                if(element.type != E.type.text && element.stroke == id) {
+                    element.stroke = newStroke;
+                }
+            }
+        }
+
+        for(let page of docu.document.pages) {
+            for(let element of page.elements) {
+                if(element.type != E.type.text && element.stroke == id) {
+                    element.stroke = newStroke;
+                }
+            }
+        }
+    }
+
     function loadFillStrokeList() {
-        let fillHTML = "";
+        let fillHTML = "", strokeHTML = "";
+        let fillSelectHTML = "", strokeSelectHTML = "";
         for(let fillId in docu.document.fills) {
             let fill = docu.document.fills[fillId];
             fillHTML += "<div>" +
+                            "<button class=\"delete-fill borderless btn cancel\" data-fill=\""+fillId+"\"></button>" +
                             "<input class=\"fill-item\" data-fill=\"" + fillId + "\" type=\"color\" value=\"" + fill.background + "\" /> " + fillId +
                         "</div>";
+            fillSelectHTML += "<option value=\"" + fillId + "\">" + fillId + "</option>"
+
+        }
+        for(let strokeId in docu.document.strokes) {
+            let stroke = docu.document.strokes[strokeId];
+            strokeHTML += "<div>" +
+                            "<button class=\"delete-stroke borderless btn cancel\" data-stroke=\""+strokeId+"\"></button>"+
+                            "<input class=\"stroke-width input short\" data-stroke=\""+strokeId+"\" type=\"number\" value=\"" + stroke.width + "\" />" +
+                            "<select class=\"stroke-linecap input short\" data-stroke=\""+strokeId+"\" value=\"" + stroke.linecap + "\">" +
+                                "<option value=\"butt\">butt</option>" +
+                            "</select>" +
+                            "<input class=\"stroke-color input short\" data-stroke=\""+strokeId+"\" type=\"color\" value=\"" + stroke.color + "\" /> " +
+                            strokeId +
+                        "</div>";
+            strokeSelectHTML += "<option value=\""+strokeId+"\">"+strokeId+"</option>"
         }
         $("#color-list").html(fillHTML);
+        $("#line-list").html(strokeHTML);
+        $("#edit-fill-sel").html(fillSelectHTML);
+        $("#edit-stroke-sel").html(strokeSelectHTML);
         $(".fill-item").on("change", function() {
             let fill = docu.document.fills[$(this).attr("data-fill")];
             fill.background = $(this).val();
+            docu.render();
+        });
+
+        $(".delete-fill").click(function() {
+            deleteFill($(this).attr("data-fill"));
+            loadFillStrokeList();
+            docu.render();
+        });
+
+        $(".delete-stroke").click(function() {
+            deleteStroke($(this).attr("data-stroke"));
+            loadFillStrokeList();
+            docu.render();
+        });
+
+        $(".stroke-width").on("change", function() {
+            let stroke = docu.document.strokes[$(this).attr("data-stroke")];
+            stroke.width = $(this).val();
+            console.log(stroke.width);
+            docu.render();
+        });
+
+        $(".stroke-linecap").on("change", function() {
+            let stroke = docu.document.strokes[$(this).attr("data-stroke")];
+            stroke.linecap = $(this).val();
+            docu.render();
+        });
+
+        $(".stroke-color").on("change", function() {
+            let stroke = docu.document.strokes[$(this).attr("data-stroke")];
+            stroke.color = $(this).val();
             docu.render();
         });
 
