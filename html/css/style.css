@@ -2,6 +2,7 @@
 @import url("overlay.css");
 @import url("sidebar.css");
 @import url("font.css");
+@import url("theme.css");
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Roboto", 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -183,14 +184,6 @@ textarea.input.sml {
 .btn.red {
     background: linear-gradient(#FD0000,#c10000)!important;
     color: #fff;
-}
-
-.btn {
-    background: #FDFDFD !important;
-}
-
-.bar {
-    background: #FDFDFD !important;
 }
 
 .blurred .bar, .blurred .bar button, .blurred .bar button::after {

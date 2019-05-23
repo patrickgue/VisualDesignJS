@@ -210,6 +210,15 @@ $(function() {
         }
     });
 
+    $("#theme-switch").on("change", function() {
+        if($(this).is(":checked")) {
+            $("body").addClass("flat");
+        }
+        else {
+            $("body").removeClass("flat");
+        }
+    });
+
     function hideMenus() {
         $("#pos-settings").hide();
         $("#text-settings").hide();
