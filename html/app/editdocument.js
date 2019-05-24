@@ -7,11 +7,11 @@
             // get list with "cat html/app/editdocument.js | cut -d "\"" -f 2 | tr "," "\n" | tr -d " " | grep "#" | sort | uniq | xargs echo | tr " " ",""
             $("#add-circle-btn,#add-color-style-btn,#add-color-style-label,#add-font-btn,#add-line-btn,"+
                 "#add-line-style-btn,#add-line-style-label,#add-rect-btn,#add-text-btn,#add-win,#close-add-btn,"+
-                "#close-pref-btn,#color-list,#color-sel,#create-pdf,#delete-btn,#edit-dwn-btn,#edit-fill-sel,"+
+                "#color-list,#color-sel,#create-pdf,#delete-btn,#edit-dwn-btn,#edit-fill-sel,"+
                 "#edit-font-inp,#edit-h-inp,#edit-size,#edit-stroke-sel,#edit-text-inp,#edit-title,#edit-type,"+
                 "#edit-typeface,#edit-up-btn,#edit-w-inp,#edit-weight,#edit-x-inp,#edit-y-inp,#fill-stroke-settings,"+
-                "#font-list,#general-settings,#line-list,#open-add-btn,#open-color-btn,#open-pref-btn,"+
-                "#open-typeface-btn,#page-nr,#pos-settings,#pref-win,#save-typeface-btn,#text-settings,#theme-switch,"+
+                "#font-list,#general-settings,#line-list,#open-add-btn,#open-color-btn,"+
+                "#open-typeface-btn,#page-nr,#pos-settings,#pref-win,#save-typeface-btn,#text-settings,"+
                 "#typeface-sel,#typeface-sel-edit,#undo-btn").off("change").off("click");
             let docu = new E(document.getElementById("document"), api.documentCollection.getSelectedDocument());
             let selFont;

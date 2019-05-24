@@ -42,8 +42,6 @@ function C(baseDoc) {
                 doc.rect(elm.pos.x, elm.pos.y, elm.pos.width, elm.pos.height, "DF");
                 break;
             case E.type.circle: 
-                /*fill = baseDoc.fills[elm.fill];
-                stroke = baseDoc.strokes[elm.stroke];*/
                 doc.setFillColor(fill.background);
                 doc.setDrawColor(stroke.color);
                 doc.setLineWidth(stroke.width);
@@ -52,6 +50,12 @@ function C(baseDoc) {
                     elm.pos.x - (elm.pos.width / 2), elm.pos.y - (elm.pos.height / 2), 
                     elm.pos.width / 2, elm.pos.height / 2, 
                     "FD");
+                break;
+            case E.type.line:
+                doc.setDrawColor(stroke.color);
+                doc.setLineWidth(stroke.width);
+                doc.setLineCap(stroke.linecap);
+                doc.line(elm.pos.x, elm.pos.y, elm.pos.x + elm.pos.width, elm.pos.y + elm.pos.height);
                 break;
         }
     }
