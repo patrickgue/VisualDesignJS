@@ -32,16 +32,18 @@
                 $("#edit-y-inp").val(elm.pos.y);
                 $("#edit-w-inp").val(elm.pos.width);
                 $("#edit-h-inp").val(elm.pos.height);
+                $("#fill-stroke-settings").show();
+                loadFillStrokeList();
+                $("#edit-stroke-sel").show();
+                $("#edit-fill-sel").val(elm.fill);
+                
                 if (elm.type == E.type.text) {
                     $("#text-settings").show();
                     let font = docu.document.fonts[elm.font];
                     $("#edit-text-inp").val(elm.text);
                     $("#edit-font-inp").val(elm.font);
-                }
-                else {
-                    $("#fill-stroke-settings").show();
-                    loadFillStrokeList();
-                    $("#edit-fill-sel").val(elm.fill);
+                    $("#edit-stroke-sel").hide();
+                    $("#edit-stroke-sel, [for=\"#edit-stroke-sel\"]").hide()
                 }
             });
 

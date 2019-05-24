@@ -25,6 +25,12 @@ function DocumentCollection() {
                     }
                 },
                 "strokes": {
+                    "none" : {
+                        "color" : "#000000",
+                        "width" : 0,
+                        "style" : "solid",
+                        "linecap" : "butt"
+                    },
                     "default": {
                         "color": "#000000",
                         "width": 2,
@@ -37,7 +43,8 @@ function DocumentCollection() {
                         "typeface": "Helvetica",
                         "size": 12,
                         "weight": "normal",
-                        "type": "normal"
+                        "type": "normal",
+                        "fill" : "default"
                     }
                 },
                 "pages": [
@@ -48,7 +55,9 @@ function DocumentCollection() {
                                 "type": E.type.text,
                                 "pos": E.position(50, 50, 300, 20),
                                 "text": "Hello World Page 1",
-                                "font": "paragraph"
+                                "font": "paragraph",
+                                "fill" : "default",
+                                "stroke" : "none"
                             }
                         ]
                     }

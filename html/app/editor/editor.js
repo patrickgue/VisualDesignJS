@@ -71,6 +71,7 @@ function E(elm, doc) {
     self.createTextElement = function(pageOffset, elm, pageNr) {
         let textElm = document.createElementNS("http://www.w3.org/2000/svg", "text");
         let font = elm.font == "default" ? self.document.fonts[0] : self.document.fonts[elm.font];
+        let fill = self.document.fills[elm.fill];
         textElm.setAttribute("x", elm.pos.x + 50);
         textElm.setAttribute("y", elm.pos.y + pageOffset + (font.size * 1.333));
         textElm.setAttribute("width", elm.pos.width);
@@ -79,6 +80,7 @@ function E(elm, doc) {
         textElm.style.fontSize = font.size + "pt";
         textElm.style.fontWeight = font.weight;
         textElm.style.fontStyle = font.type;
+        textElm.style.fill = fill.background;
         textElm.innerHTML = elm.text.replace(/#/g, (pageNr + 1));
         return textElm;
     };
@@ -237,6 +239,7 @@ function E(elm, doc) {
                     100,
                     20),
                 "font" : "paragraph",
+                "fill" : "default",
                 "text" : "insert text"
             });
         }
