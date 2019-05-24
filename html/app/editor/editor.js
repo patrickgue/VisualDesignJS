@@ -1,13 +1,9 @@
-//const pdfjs = require("pdfjs");
-
-
-
 function E(elm, doc) {
     let self = this
 
-    self.render = function(sUndo) {
-        sUndo = (sUndo == undefined ? true : sUndo);
-        if (sUndo) {
+    self.render = function(forceUndo) {
+        forceUndo = (forceUndo == undefined ? true : forceUndo);
+        if (forceUndo) {
             self.undoStack.push(clone(self.document));
         }
         self.svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");

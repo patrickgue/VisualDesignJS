@@ -21,6 +21,8 @@
     width: 100%;
     overflow-x: scroll;
     padding: 10px 0px;
+    margin-left: -20px;
+    padding-left: 20px;
 }
 
 .cards {
@@ -32,10 +34,11 @@
     display: inline-block;
     width: 200px;
     height: 300px;
-    background-color: #e33;
+    background-color: transparent;
     margin-right: 20px;
     border-radius: 15px;
-    box-shadow: 0 0 10px rgba(32,32,32,.5);
+    box-shadow: 0 0 10px rgba(32,32,32,.2);
+    border: 1px solid rgba(32,32,32,.2);
 }
 
 .overlay-close {

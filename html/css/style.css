@@ -3,6 +3,7 @@
 @import url("sidebar.css");
 @import url("font.css");
 @import url("theme.css");
+@import url("home.css");
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Roboto", 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;

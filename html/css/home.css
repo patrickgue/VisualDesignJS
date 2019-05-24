@@ -1,0 +1,10 @@
+.card.new {
+    font-size: 40px;
+    background-color: transparent;
+    text-align: center;
+}
+
+.card.new span {
+    margin-top: 114px;
+    display: block;
+}
